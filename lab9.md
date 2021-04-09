@@ -60,3 +60,8 @@ db.definitions.find({word: "Beer"})
 ![Changed](check3.3.png)
 
 
+### Git Diff:
+
+#### Added Rubber duck:
+
+![add](check3.4.png)
