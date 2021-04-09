@@ -118,3 +118,54 @@ You can see the bottom of the fetch_all query. I didn't include the entire thing
 
 ![terminal](check4.1.png)
 
+
+## Checkpoint 5
+
+### Script
+
+```python
+from pymongo import MongoClient
+client = MongoClient()
+import random
+import datetime
+
+
+def random_word_requester():
+    '''
+    This function should return a random word and its definition and also
+    log in the MongoDB database the timestamp that it was accessed.
+    '''
+    client = MongoClient('localhost', 27017)
+    # Get the database
+    db = client.mongo_db_lab
+    # Get the collection
+    collection = db.definitions
+    words = []
+    # append each word to list
+    for post in collection.find():
+    	words.append(post)
+    # take a random selection:
+    selection = random.choice(words)
+    # get date:
+    d1 = datetime.datetime.utcnow()
+    d2 = datetime.datetime.isoformat(d1)
+    # get id
+    id = selection["_id"]
+    # push this date:
+    db.definitions.update(
+	   { "_id": id},
+	   { '$push': { 'dates': d2 } }
+	)
+    # return the word:
+    return selection['word'], selection['definition']
+
+
+if __name__ == '__main__':
+    print(random_word_requester())
+
+```
+
+### Found Capitaland twice:
+
+![capitaland](check5.1.png)
+
