@@ -116,5 +116,5 @@ if __name__ == '__main__':
 
 You can see the bottom of the fetch_all query. I didn't include the entire thing to save space. There are also a few entries of rubber duck because I made a few mistakes when querying, causing me to reinster with a new id:
 
-![terminal](check.4.1.png)
+![terminal](check4.1.png)
 
