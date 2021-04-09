@@ -65,3 +65,11 @@ db.definitions.find({word: "Beer"})
 #### Added Rubber duck:
 
 ![add](check3.4.png)
+
+#### Removed Old Beer Definition:
+
+![remove](check3.5.png)
+
+#### Updated Beer Definition:
+
+![update](check3.6.png)
