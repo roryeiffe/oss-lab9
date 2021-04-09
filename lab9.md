@@ -73,3 +73,48 @@ db.definitions.find({word: "Beer"})
 #### Updated Beer Definition:
 
 ![update](check3.6.png)
+
+## Checkpoint 4
+
+### Script:
+
+```python
+from pymongo import MongoClient
+from bson.objectid import ObjectId
+import pprint
+client = MongoClient()
+
+if __name__ == '__main__':
+    client = MongoClient('localhost', 27017)
+    # Get the database
+    db = client.mongo_db_lab
+    # Get the collection
+    collection = db.definitions
+    # Fetch all records:
+    for post in collection.find():
+    	pprint.pprint(post)
+    print()
+    # Fetch one record
+    pprint.pprint(collection.find_one())
+    print()
+    # Find specific record:
+    pprint.pprint(collection.find_one({"word":"Za"}))
+    print()
+    # Querying by object id:
+    pprint.pprint(collection.find_one({"_id":ObjectId('56fe9e22bad6b23cde07b945')}))
+    print()
+    # Inserting:
+    word = {"word":"rubber duck",
+    		"definition": "A rubber duck or rubber ducky is a toy shaped like a stylized duck, generally yellow with a flat base.",
+    		"_id":"duck_id3"}
+    word_id = collection.insert_one(word).inserted_id
+    # print out the word that we inserted:
+    pprint.pprint(collection.find_one({"_id": word_id}))
+```
+
+### Terminal Output:
+
+You can see the bottom of the fetch_all query. I didn't include the entire thing to save space. There are also a few entries of rubber duck because I made a few mistakes when querying, causing me to reinster with a new id:
+
+![terminal](check.4.1.png)
+
